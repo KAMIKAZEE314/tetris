@@ -2,11 +2,56 @@ import sys
 import threading as th
 import queue as q
 import time
+import enum
 
 clock = th.Event()
 output_clock = th.Event()
 stop_event = th.Event()
 thread_list = []
+
+class Block_Shapes(enum.Enum):
+	FOUR_LONG = [
+		[0, 1, 0, 0],
+		[0, 1, 0, 0],
+		[0, 1, 0, 0],
+		[0, 1, 0, 0]
+	]
+	S_PIECE = [
+		[0, 0, 0, 0],
+		[0, 0, 1, 1],
+		[0, 1, 1, 0],
+		[0, 0, 0, 0]
+	]
+	Z_PIECE = [
+		[0, 0, 0, 0],
+		[1, 1, 0, 0],
+		[0, 1, 1, 0],
+		[0, 0, 0, 0]
+	]
+	T_PIECE = [
+		[0, 0, 0, 0],
+		[0, 1, 1, 1],
+		[0, 0, 1, 0],
+		[0, 0, 0, 0]
+	]
+	RIGHTY = [
+		[0, 0, 0, 0],
+		[0, 0, 0, 1],
+		[0, 1, 1, 1],
+		[0, 0, 0, 0]
+	]
+	LEFTY = [
+		[0, 0, 0, 0],
+		[0, 1, 0, 0],
+		[0, 1, 1, 1],
+		[0, 0, 0, 0]
+	]
+	SQUARE = [
+		[0, 0, 0, 0],
+		[0, 1, 1, 0],
+		[0, 1, 1, 0],
+		[0, 0, 0, 0]
+	]
 
 if sys.platform.startswith("win"):
     import msvcrt
